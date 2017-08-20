@@ -1,0 +1,16 @@
+{
+  "name": "d1",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "main": "server.js",
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.15.4",
+    "fs": "0.0.1-security",
+    "http": "0.0.0"
+  }
+}
