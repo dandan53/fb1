@@ -5,7 +5,11 @@ var app = express();
 app.set('port', process.env.PORT || 8080);
 
 app.get('/', function(req, res){
-    res.send('hello world');
+    res.send('hub_challenge');
+});
+
+app.get('/a', function(req, res){
+   res.send(req.query['hub.challenge']);
 });
 
 var VERIFY_TOKEN = 'EAAGoBKt8KYgBAI0cX1s3JXJsMarnEXHOLkq7VFHPZA8j5rHm8qI3XDpUrciOxozmWZCgKujvNK5p9vfJ0Y0lZCZC9ZCZBfSON3qDn6npPQ8yd38GbRcPWXKhRAWZA4YSAlsEoQarT9FqQEAZCbO9XwldWrkyvy9XQ045JHiuf9LdWQZDZD';
