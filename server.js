@@ -1,12 +1,21 @@
 var express = require("express");
 var app = express();
 
+var path = require('path');
+
+// viewed at http://localhost:8080
+app.get('/', function(req, res) {
+    res.sendFile(path.join(__dirname + '/index.html'));
+});
+
+
 // sets port 8080 to default or unless otherwise specified in the environment
 app.set('port', process.env.PORT || 8080);
 
+/*
 app.get('/', function(req, res){
     res.send('hub_challenge');
-});
+});*/
 
 app.get('/a', function(req, res){
    res.send(req.query['hub.challenge']);
