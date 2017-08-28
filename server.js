@@ -4,9 +4,17 @@ var app = express();
 var path = require('path');
 
 // viewed at http://localhost:8080
-app.get('/', function(req, res) {
+/*app.get('/', function(req, res) {
     res.sendFile(path.join(__dirname + '/index.html'));
 });
+*/
+ // GET /style.css etc
+app.use(express.static(__dirname + '/public'));
+
+// Mount the middleware at "/static" to serve static content only when their request path is prefixed with "/static".
+
+// GET /static/style.css etc.
+app.use('/static', express.static(__dirname + '/public'));
 
 
 // sets port 8080 to default or unless otherwise specified in the environment
