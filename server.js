@@ -11,7 +11,8 @@ app.use(express.static(__dirname + '/public'));
 
 app.get('/a', function(req, res){
   console.log('hub.challenge11111');
-  res.send('hub.challenge');
+res.send(__dirname);
+  //res.send('hub.challenge');
    // res.send(req.query['hub.challenge']);
 });
 
