@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "start": "node server.js"
+    "start": "node app.js"
   },
-  "main": "server.js",
+  "main": "app.js",
   "author": "",
   "license": "ISC",
   "dependencies": {
