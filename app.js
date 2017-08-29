@@ -23,7 +23,7 @@ console.log = function(d) { //
 
 
 
-let token = "EAAGoBKt8KYgBAMStEE1DuBwXstfG5FsgP1jzf3gncmUPtqkNBvp0ltHRzW7jbnCZAuVyruXMZAPRfDpZC4Y9IRcDFMeIJQZAr2ePp3rRJJDDPkP3l8PXZChEZAS0QmeKcyFi6K1F3ve78pg0WRPpzjFKG8mU4xc9jMLOmXiE2XLgZDZD"
+let token = "EAAGoBKt8KYgBAPLmE6Q38xwSE2O7n5lL3E6rqLhgac2wZCpkWhzi5GhZAEAKHjb1xjYTk6zq6ZAHZBcOK30V2HWUakH3ZCWJucBoahZB719DI9nOmnp9EwJMDpk000ZCGPltxXhTvycH6PjEDHFBqMtFontOpi2a6ZAZB4JfsAROreQZDZD"
 
 // Define the port to run on
 app.set('port', process.env.PORT || 8080);
