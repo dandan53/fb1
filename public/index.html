@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>MEAN is best</title>
+  <title>dan</title>
 </head>
 <body>
 
   <script>
+
+var dan = "dddddd"
+
    window.fbAsyncInit = function() {
       FB.init({
         appId      : '466212987087240',
@@ -23,19 +26,40 @@
         fjs.parentNode.insertBefore(js, fjs);
       }(document, 'script', 'facebook-jssdk')
     );
+
   </script>
 
-  <div class="fb-messenger-checkbox"
+  <div
+    id="fbcb"
+    class="fb-messenger-checkbox"
     origin=https://aws-use1a-dev-dev-fbbot.rfinfra.net/
     page_id=878789912285998
     messenger_app_id=466212987087240
-    user_ref="23;23"
+    user_ref=randomString(10)
     prechecked="true"
     allow_login="true"
     size="large"></div>
 
+    <script type="text/javascript">
+    var randomString = function(length) {
+        var text = "";
+        var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+        for(var i = 0; i < length; i++) {
+            text += possible.charAt(Math.floor(Math.random() * possible.length));
+        }
+        return text;
+    }
 
-  <h1>Express FTW!!!!</h1>
+    function myFunction() {
+      var ref = randomString(10);
+      document.getElementById("fbcb").setAttribute("user_ref", ref);
+    }
+
+    myFunction();
+    </script>
+
+
+  <h1>dan</h1>
 
 </body>
 </html>
