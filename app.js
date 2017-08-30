@@ -209,7 +209,7 @@ function postAlert(sender, messageData, token) {
     }
   })
 }
-Welcome to Yonatan's kingdom
+
 var buildMessageAlert = function () {
     
         var messageData =
