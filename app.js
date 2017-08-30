@@ -225,7 +225,7 @@ var buildMessageAlert = function () {
             "subtitle":"We\'ve got the right hat for everyone.",
             "default_action": {
               "type": "web_url",
-              "url": "http://www.bestdeals.today/beauty%20health",
+              "url": "https://www.bestdeals.today/beauty%20health",
               "messenger_extensions": true,
               "webview_height_ratio": "tall",
               "fallback_url": "https://aws-use1a-dev-dev-fbbot.rfinfra.net/"
@@ -233,7 +233,7 @@ var buildMessageAlert = function () {
             "buttons":[
               {
                 "type":"web_url",
-                "url":"http://www.bestdeals.today/beauty%20health",
+                "url":"https://www.bestdeals.today/beauty%20health",
                 "title":"View Website"
               },{
                 "type":"postback",
