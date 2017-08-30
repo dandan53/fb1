@@ -94,20 +94,19 @@ app.post('/webhook/', function(req, res) {
 		  
 		  if (JSON.stringify(req.body).indexOf("RF") > 0)
 		  {
-			  var jsn = JSON.stringify(messaging_events);
-    console.log("messaging_events : " + jsn);
-			  let optin = messaging_events.optin;
+			  let event = messaging_events[0]
+			  let optin = event.optin;
 			  let user_ref = optin.user_ref;
 			  sendTextCheckbox(user_ref, "Hi from the site");
 		  }
 		  else
 		  {
 			  for (let i=0; i < messaging_events.length; i++){
-            let event = messaging_events[i]
-            let sender = event.sender.id
-            if (event.message && event.message.text){
-              let text = event.message.text
-              sendText(sender, "Text echo: " + text.substring(0, 100))
+				let event = messaging_events[i]
+				let sender = event.sender.id
+				if (event.message && event.message.text){
+				let text = event.message.text
+				sendText(sender, "Text echo: " + text.substring(0, 100))
             }
           }
 		  } 
