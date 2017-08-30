@@ -171,6 +171,24 @@ app.listen(app.get('port'), function() {
 //// CHECKBOX /////
 
 
+function sendMessage1(userId, messageData, token) {
+    request({
+      url: "https://graph.facebook.com/v2.6/me/messages",
+      qs: {access_token: token},
+        method: 'POST',
+        json: {
+            recipient: {user_ref:userId},
+            message: messageData
+        }
+    }, function(error, response, body) {
+        console.log(body);
+        if (error) {
+            console.log(error);
+        }
+       // callback();
+    });
+}
+
 
 // user_ref
 function postAlert(sender, messageData, token) {
@@ -239,7 +257,7 @@ var sendAlert = function (userId, ref, token) {
     if (messageData) {
 
         // 1155176167884296
-        postAlert(userId, messageData, token);
+        sendMessage1(userId, messageData, token);
     }
 }
 
