@@ -221,11 +221,10 @@ var buildMessageAlert = function () {
         "elements":[
            {
             "title":"Welcome to Peter\'s Hats",
-            "image_url":"https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/Blue_Tshirt.jpg/220px-Blue_Tshirt.jpg",
             "subtitle":"We\'ve got the right hat for everyone.",
             "default_action": {
               "type": "web_url",
-              "url": "https://www.bestdeals.today/beauty%20health",
+              "url": "https://aws-use1a-dev-dev-fbbot.rfinfra.net/",
               "messenger_extensions": true,
               "webview_height_ratio": "tall",
               "fallback_url": "https://aws-use1a-dev-dev-fbbot.rfinfra.net/"
@@ -233,7 +232,7 @@ var buildMessageAlert = function () {
             "buttons":[
               {
                 "type":"web_url",
-                "url":"https://www.bestdeals.today/beauty%20health",
+                "url":"https://aws-use1a-dev-dev-fbbot.rfinfra.net/",
                 "title":"View Website"
               },{
                 "type":"postback",
