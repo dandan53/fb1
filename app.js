@@ -173,8 +173,8 @@ app.listen(app.get('port'), function() {
 
 
 // user_ref
-function postAlert(sender, text, token) {
-  let messageData = {text: text}
+function postAlert(sender, messageData, token) {
+  //let messageData = {text: text}
   request({
     url: "https://graph.facebook.com/v2.6/me/messages",
     qs: {access_token: token},
