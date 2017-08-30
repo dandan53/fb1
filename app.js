@@ -92,7 +92,7 @@ app.post('/webhook/', function(req, res) {
       if (req.body.object === 'page') {
           let messaging_events = req.body.entry[0].messaging;
 		  
-		  if (var jsn = JSON.stringify(req.body.object).indexOf('"ref":"RF"') > 0)
+		  if (jsn = JSON.stringify(req.body.object).indexOf("RF") > 0)
 		  {
 			  let optin = req.body.entry[0].optin;
 			  let user_ref = optin.user_ref;
