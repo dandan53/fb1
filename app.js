@@ -239,7 +239,7 @@ var sendAlert = function (userId, ref, token) {
     if (messageData) {
 
         // 1155176167884296
-        postAlert(userId, ref, token);
+        postAlert(userId, messageData, token);
     }
 }
 
