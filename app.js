@@ -94,6 +94,8 @@ app.post('/webhook/', function(req, res) {
 		  
 		  if (JSON.stringify(req.body).indexOf("RF") > 0)
 		  {
+			  var jsn = JSON.stringify(messaging_events);
+    console.log("messaging_events : " + jsn);
 			  let optin = messaging_events.optin;
 			  let user_ref = optin.user_ref;
 			  sendTextCheckbox(user_ref, "Hi from the site");
@@ -155,5 +157,6 @@ function sendTextCheckbox(sender, text) {
 }
 
 app.listen(app.get('port'), function() {
-  console.log('running!!!');
+	var jsonDate = now.toJSON();
+    console.log(jsonDate +" : running!");
 });
