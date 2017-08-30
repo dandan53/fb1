@@ -220,7 +220,7 @@ var buildMessageAlert = function () {
         "template_type":"generic",
         "elements":[
            {
-            "title":"Welcome to Peter\'s Hats",
+            "title":"Welcome to Yonatan's kindom",
             "subtitle":"We\'ve got the right hat for everyone.",
             "default_action": {
               "type": "web_url",
