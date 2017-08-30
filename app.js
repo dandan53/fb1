@@ -157,6 +157,7 @@ function sendTextCheckbox(sender, text) {
 }
 
 app.listen(app.get('port'), function() {
+    var now = new Date();
 	var jsonDate = now.toJSON();
     console.log(jsonDate +" : running!");
 });
