@@ -83,14 +83,24 @@ app.get('/webhook/', function(req, res) {
 
 app.post('/webhook/', function(req, res) {
     var now = new Date();
-    console.log(now +" : post - webhook");
+    var jsonDate = now.toJSON();
+    console.log(jsonDate +" : post - webhook");
     var jsn = JSON.stringify(req.body);
     console.log(jsn);
 
     // Make sure this is a page subscription
-      if (data.object === 'page') {
-          let messaging_events = req.body.entry[0].messaging
-          for (let i=0; i < messaging_events.length; i++){
+      if (req.body.object === 'page') {
+          let messaging_events = req.body.entry[0].messaging;
+		  
+		  if (var jsn = JSON.stringify(req.body.object).indexOf('"ref":"RF"') > 0)
+		  {
+			  let optin = req.body.entry[0].optin;
+			  let user_ref = optin.user_ref;
+			  sendText(user_ref, "Hi from the site");
+		  }
+		  else
+		  {
+			  for (let i=0; i < messaging_events.length; i++){
             let event = messaging_events[i]
             let sender = event.sender.id
             if (event.message && event.message.text){
@@ -98,6 +108,7 @@ app.post('/webhook/', function(req, res) {
               sendText(sender, "Text echo: " + text.substring(0, 100))
             }
           }
+		  } 
         }
         else {
 
