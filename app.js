@@ -4,7 +4,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const request = require('request');
 
-var alertsService =  require("./src/alertsService.js");
+//var alertsService =  require("./src/alertsService.js");
 
 
 const app = express();
