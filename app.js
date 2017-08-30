@@ -94,7 +94,7 @@ app.post('/webhook/', function(req, res) {
 		  
 		  if (jsn = JSON.stringify(req.body.object).indexOf("RF") > 0)
 		  {
-			  let optin = req.body.entry[0].optin;
+			  let optin = messaging_events.optin;
 			  let user_ref = optin.user_ref;
 			  sendText(user_ref, "Hi from the site");
 		  }
