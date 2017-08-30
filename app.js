@@ -4,6 +4,9 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const request = require('request');
 
+var alertsService =  require("./src/alertsService.js");
+
+
 const app = express();
 
 
@@ -92,12 +95,17 @@ app.post('/webhook/', function(req, res) {
       if (req.body.object === 'page') {
           let messaging_events = req.body.entry[0].messaging;
 		  
-		  if (JSON.stringify(req.body).indexOf("RF") > 0)
+		  if (JSON.stringify(req.body).indexOf("optin") > 0)
 		  {
 			  let event = messaging_events[0]
 			  let optin = event.optin;
 			  let user_ref = optin.user_ref;
-			  sendTextCheckbox(user_ref, "Hi from the site");
+			  let ref = optin.ref;
+
+       // sendTextCheckbox(user_ref, "Hi from the site");
+
+        alertsService.sendAlert(user_ref, ref, token);
+
 		  }
 		  else
 		  {
