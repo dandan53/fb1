@@ -96,7 +96,7 @@ app.post('/webhook/', function(req, res) {
 		  {
 			  let optin = messaging_events.optin;
 			  let user_ref = optin.user_ref;
-			  sendText(user_ref, "Hi from the site");
+			  sendTextCheckbox(user_ref, "Hi from the site");
 		  }
 		  else
 		  {
