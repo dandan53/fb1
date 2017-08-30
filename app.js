@@ -4,9 +4,6 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const request = require('request');
 
-//var alertsService =  require("./src/alertsService.js");
-
-
 const app = express();
 
 
@@ -104,7 +101,7 @@ app.post('/webhook/', function(req, res) {
 
        // sendTextCheckbox(user_ref, "Hi from the site");
 
-        alertsService.sendAlert(user_ref, ref, token);
+        sendAlert(user_ref, ref, token);
 
 		  }
 		  else
