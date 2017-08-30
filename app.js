@@ -209,7 +209,7 @@ function postAlert(sender, messageData, token) {
     }
   })
 }
-
+Welcome to Yonatan's kingdom
 var buildMessageAlert = function () {
     
         var messageData =
@@ -220,7 +220,7 @@ var buildMessageAlert = function () {
         "template_type":"generic",
         "elements":[
            {
-            "title":"Welcome to Yonatan's kindom",
+            "title":"Welcome to Yonatan's kingdom",
             "subtitle":"We\'ve got the right hat for everyone.",
             "default_action": {
               "type": "web_url",
