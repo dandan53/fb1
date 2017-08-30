@@ -83,7 +83,11 @@ app.get('/webhook/', function(req, res) {
 
 app.post('/webhook/', function(req, res) {
     console.log("post - webhook");
+
+    var jsn = JSON.stringify(req.body);
     console.log(req.body);
+    console.log(jsn);
+
 
     let messaging_events = req.body.entry[0].messaging
     for (let i=0; i < messaging_events.length; i++){
