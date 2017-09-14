@@ -36,8 +36,10 @@ let hiText = "Hi 🙂 Still looking for PRODUCT? We have some interesting offers
 
 let bdtUrl = "https://www.bestdeals.today/PRODUCT?utm_source=roundbot1&utm_medium=messenger_bot&origin=bot"
 
+let bdt = "https://www.bestdeals.today"
+
 //let promotionText = "Check out the best deals for PRODUCT"
-let promotionText = "Check out the PRODUCT"
+let promotionText = "Check out the site"
 
 /// HTML
 
@@ -68,6 +70,8 @@ app.get('/message', function(req, res) {
   console.log("get message");
 
         sendHi("o2j02mihOA", token, "chair")
+        sendGenericAlert("o2j02mihOA", token); 
+
 })
 
 
@@ -131,6 +135,9 @@ app.post('/webhook/', function(req, res) {
         var retText = "This is an automated message but you are welcome to visit the site - https://www.bestdeals.today"
 
         sendText(sender, retText)
+
+        sendGenericAlert(user_ref, token); 
+
 
         // sendText(sender, "Text echo: " + text.substring(0, 100))
             }
@@ -320,11 +327,54 @@ function sendMessage1(userId, messageData, token) {
 
 
 
+var sendGenericAlert = function (userId, token) {
+     var messageData = buildGeneralMessageAlert();
+    if (messageData) {
 
+        // 1155176167884296
+        sendMessage1(userId, messageData, token);
+    }
+}
 
+var buildGeneralMessageAlert = function () {
+    
 
+        var messageData =
+        {
+    "attachment":{
+      "type":"template",
+      "payload":{
+        "template_type":"generic",
+        "elements":[
+           {
+            "title":"Start Making Smart Purchases!",
+            "image_url":"https://aws-use1a-dev-dev-fbbot.rfinfra.net/images/bdt.png",
+            "default_action": {
+              "type": "web_url",
+              "url": bdt,
+              "messenger_extensions": true,
+              "webview_height_ratio": "tall",
+              "fallback_url": bdt
+            },
+            "buttons":[
+              {
+                "type":"web_url",
+                "url":bdt,
+                "title": "Find More Deals"
+              },{
+                "type":"web_url",
+                "url":bdt,
+                "title":"Customer Care"
+              }            
+            ]      
+          }
+        ]
+      }
+    }
+}
+    return messageData;
 
-
+};
 
 
 
