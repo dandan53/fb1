@@ -199,7 +199,7 @@ var buildMessageAlert = function (text) {
         "elements":[
            {
             "title":"Hi!",
-            "subtitle":test,
+            "subtitle":text,
             "default_action": {
               "type": "web_url",
               "url": "https://aws-use1a-dev-dev-fbbot.rfinfra.net/",
