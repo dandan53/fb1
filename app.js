@@ -32,8 +32,11 @@ app.use(bodyParser.urlencoded({extended:false}))
 app.use(bodyParser.json())
 
 
+let hiText = "Hi 🙂 Still looking for PRODUCT ? We have some interesting offers for you!"
 
+let bdtUrl = "https://www.bestdeals.today/PRODUCT?utm_source=roundbot1&utm_medium=messenger_bot&origin=bot"
 
+let promotionText = "Check out the best deals for PRODUCT"
 
 /// HTML
 
@@ -97,15 +100,18 @@ app.post('/webhook/', function(req, res) {
 			  let event = messaging_events[0]
 			  let optin = event.optin;
 			  let user_ref = optin.user_ref;
-			  let ref = optin.ref;
+			  let product = optin.ref;
 
         
-        console.log("webhook - product: " + ref);
+        console.log("webhook - product: " + product);
 
 
-        var text = "Hi 🙂 Still looking for " + ref + " ? We have some interesting offers for you!"
+        var text =  hiText.replace("PRODUCT", product)
 
-        sendAlert(user_ref, ref, token, text);
+        sendText(user_ref, text)
+
+        sendAlert(user_ref, ref, token, product); 
+
 
 		  }
 		  else
@@ -176,8 +182,8 @@ app.listen(app.get('port'), function() {
 
 //// CHECKBOX /////
 
-var sendAlert = function (userId, ref, token, text) {
-     var messageData = buildMessageAlert(text);
+var sendAlert = function (userId, ref, token, product) {
+     var messageData = buildMessageAlert(product);
     if (messageData) {
 
         // 1155176167884296
@@ -187,8 +193,10 @@ var sendAlert = function (userId, ref, token, text) {
 
 
 
-var buildMessageAlert = function (text) {
+var buildMessageAlert = function (product) {
     
+        var web_url = bdtUrl.replace("PRODUCT", product)
+        var promotText = promotionText.replace("PRODUCT", product)
 
         var messageData =
         {
@@ -198,25 +206,24 @@ var buildMessageAlert = function (text) {
         "template_type":"generic",
         "elements":[
            {
-            "title":"Hi!",
-            "subtitle":text,
+            "image_url":"https://aws-use1a-dev-dev-fbbot.rfinfra.net/images/bdt.png",
             "default_action": {
               "type": "web_url",
-              "url": "https://aws-use1a-dev-dev-fbbot.rfinfra.net/",
+              "url": web_url,
               "messenger_extensions": true,
               "webview_height_ratio": "tall",
-              "fallback_url": "https://aws-use1a-dev-dev-fbbot.rfinfra.net/"
+              "fallback_url": web_url
             },
             "buttons":[
               {
                 "type":"web_url",
-                "url":"https://aws-use1a-dev-dev-fbbot.rfinfra.net/",
-                "title":"View Website"
+                "url":web_url,
+                "title": promotText
               },{
-                "type":"postback",
-                "title":"Start Chatting",
-                "payload":"DEVELOPER_DEFINED_PAYLOAD"
-              }              
+                "type":"web_url",
+                "url":web_url,
+                "title":"Continue shopping"
+              }            
             ]      
           }
         ]
