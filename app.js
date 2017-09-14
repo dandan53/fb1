@@ -84,9 +84,9 @@ app.get('/webhook/', function(req, res) {
 app.post('/webhook/', function(req, res) {
     var now = new Date();
     var jsonDate = now.toJSON();
-    console.log(jsonDate +" : post - webhook");
+    console.log("post - webhook: " + jsonDate);
     var jsn = JSON.stringify(req.body);
-    console.log(jsn);
+    console.log("webhook: " + jsn);
 
     // Make sure this is a page subscription
       if (req.body.object === 'page') {
@@ -103,6 +103,7 @@ app.post('/webhook/', function(req, res) {
         ref = result[0];
         let product = result[1];
        // sendTextCheckbox(user_ref, "Hi from the site");
+      console.log("webhook - product: " + product);
 
 
         var text = "Hi 🙂 Still looking for " + product + " ? We have some interesting offers for you!"
@@ -200,7 +201,7 @@ var buildMessageAlert = function (text) {
         "template_type":"generic",
         "elements":[
            {
-            "title":text,
+            "title":"text",
             "subtitle":"We\'ve got the right hat for everyone.",
             "default_action": {
               "type": "web_url",
