@@ -208,6 +208,7 @@ var buildMessageAlert = function (product) {
         "template_type":"generic",
         "elements":[
            {
+            "title":"Best Deals Today",
             "image_url":"https://aws-use1a-dev-dev-fbbot.rfinfra.net/images/bdt.png",
             "default_action": {
               "type": "web_url",
