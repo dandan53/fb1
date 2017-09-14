@@ -127,7 +127,7 @@ app.post('/webhook/', function(req, res) {
 				if (event.message && event.message.text){
 				let text = event.message.text
         
-        var retText = "This is an automated message but you are welcome to visit the site - https://www.bestdeals.today/?utm_source=roundbot1&utm_medium=messenger_bot&origin=bot"
+        var retText = "This is an automated message but you are welcome to visit the site - https://www.bestdeals.today"
 
         sendText(sender, retText)
 
