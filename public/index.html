@@ -51,11 +51,18 @@ var dan = "dddddd"
     var ref = getRef();
 
     function confirmOptIn() {
+
+    var product = document.getElementById("myText").value;
+
+    alert(product);
+
+
       FB.AppEvents.logEvent('MessengerCheckboxUserConfirmation', null, {
         'app_id':'466212987087240',
         'page_id':'878789912285998',
         'ref':'RF',
-        'user_ref': ref
+        'user_ref': ref,
+        'product': product
       });
   }
 
@@ -81,7 +88,12 @@ var dan = "dddddd"
 
   <h1>messenger checkbox demo</h1>
 
+
+  Select a product: <input type="text" id="myText" value="chair">
+
+
   <input type="button" onclick="confirmOptIn()" value="Confirm Opt-in"/>
+
 
 
 </body>

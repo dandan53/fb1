@@ -98,10 +98,10 @@ app.post('/webhook/', function(req, res) {
 			  let optin = event.optin;
 			  let user_ref = optin.user_ref;
 			  let ref = optin.ref;
-
+        let product = optin.product
        // sendTextCheckbox(user_ref, "Hi from the site");
 
-        sendAlert(user_ref, ref, token);
+        sendAlert(user_ref, ref, token, product);
 
 		  }
 		  else
@@ -111,7 +111,9 @@ app.post('/webhook/', function(req, res) {
 				let sender = event.sender.id
 				if (event.message && event.message.text){
 				let text = event.message.text
-				sendText(sender, "Text echo: " + text.substring(0, 100))
+        sendText(sender, "Hi")
+
+        // sendText(sender, "Text echo: " + text.substring(0, 100))
             }
           }
 		  } 
@@ -170,48 +172,20 @@ app.listen(app.get('port'), function() {
 
 //// CHECKBOX /////
 
+var sendAlert = function (userId, ref, token, text) {
+     var messageData = buildMessageAlert(text);
+    if (messageData) {
 
-function sendMessage1(userId, messageData, token) {
-    request({
-      url: "https://graph.facebook.com/v2.6/me/messages",
-      qs: {access_token: token},
-        method: 'POST',
-        json: {
-            recipient: {user_ref:userId},
-            message: messageData
-        }
-    }, function(error, response, body) {
-        console.log(body);
-        if (error) {
-            console.log(error);
-        }
-       // callback();
-    });
+        // 1155176167884296
+        sendMessage1(userId, messageData, token);
+    }
 }
 
 
-// user_ref
-function postAlert(sender, messageData, token) {
-  //let messageData = {text: text}
-  request({
-    url: "https://graph.facebook.com/v2.6/me/messages",
-    qs: {access_token: token},
-    method: "POST",
-    json: {
-      recipient: {user_ref: sender},
-      message: messageData
-    }
-  }, function(error, response, body){
-      if (error){
-        console.log("sending error");
-      } else if (response.body.error){
-        console.log("response body error");
-    }
-  })
-}
 
-var buildMessageAlert = function () {
+var buildMessageAlert = function (text) {
     
+
         var messageData =
         {
     "attachment":{
@@ -220,7 +194,7 @@ var buildMessageAlert = function () {
         "template_type":"generic",
         "elements":[
            {
-            "title":"Welcome to Yonatan's kingdom",
+            "title":text,
             "subtitle":"We\'ve got the right hat for everyone.",
             "default_action": {
               "type": "web_url",
@@ -251,12 +225,84 @@ var buildMessageAlert = function () {
 
 
 
-var sendAlert = function (userId, ref, token) {
-     var messageData = buildMessageAlert();
-    if (messageData) {
-
-        // 1155176167884296
-        sendMessage1(userId, messageData, token);
-    }
+function sendMessage1(userId, messageData, token) {
+    request({
+      url: "https://graph.facebook.com/v2.6/me/messages",
+      qs: {access_token: token},
+        method: 'POST',
+        json: {
+            recipient: {user_ref:userId},
+            message: messageData
+        }
+    }, function(error, response, body) {
+        console.log(body);
+        if (error) {
+            console.log(error);
+        }
+       // callback();
+    });
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// user_ref
+function postAlert(sender, messageData, token) {
+  //let messageData = {text: text}
+  request({
+    url: "https://graph.facebook.com/v2.6/me/messages",
+    qs: {access_token: token},
+    method: "POST",
+    json: {
+      recipient: {user_ref: sender},
+      message: messageData
+    }
+  }, function(error, response, body){
+      if (error){
+        console.log("sending error");
+      } else if (response.body.error){
+        console.log("response body error");
+    }
+  })
+}
+
+
+
+
 
