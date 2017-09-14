@@ -110,7 +110,7 @@ app.post('/webhook/', function(req, res) {
 
         sendText(user_ref, text)
 
-        sendAlert(user_ref, ref, token, product); 
+        sendAlert(user_ref, token, product); 
 
 
 		  }
@@ -175,6 +175,8 @@ function sendTextCheckbox(sender, text) {
 app.listen(app.get('port'), function() {
     var now = new Date();
 	var jsonDate = now.toJSON();
+    console.log("");
+    console.log("*******************************************************************************");
     console.log(jsonDate +" : running!");
 });
 
@@ -182,7 +184,7 @@ app.listen(app.get('port'), function() {
 
 //// CHECKBOX /////
 
-var sendAlert = function (userId, ref, token, product) {
+var sendAlert = function (userId, token, product) {
      var messageData = buildMessageAlert(product);
     if (messageData) {
 
