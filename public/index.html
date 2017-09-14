@@ -54,19 +54,11 @@ var dan = "dddddd"
 
     var product = document.getElementById("myText").value;
 
-    ref = ref + "_" + product;
-
-
-       /* var result = ref.split("@");
-        ref = result[0];
-        var prod = result[1]; */
-
-        alert(ref); 
-
+   
     FB.AppEvents.logEvent('MessengerCheckboxUserConfirmation', null, {
         'app_id':'466212987087240',
         'page_id':'878789912285998',
-        'ref':'RF',
+        'ref':product,
         'user_ref': ref
       });
   }
