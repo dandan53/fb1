@@ -53,10 +53,10 @@ app.use(express.static(__dirname + '/public'));
 })*/
 
 //TEST
-app.get('/test', function(req, res) {
-  console.log("get - /");
+app.get('/version', function(req, res) {
+  console.log("get version - /");
 
-  res.send("Hi I am a bit")
+  res.send("version 1")
 })
 
 
