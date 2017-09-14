@@ -70,7 +70,7 @@ app.get('/message', function(req, res) {
   console.log("get message");
 
         sendHi("o2j02mihOA", token, "chair")
-        sendGenericAlert("o2j02mihOA", token); 
+        sendGenericAlert(1502736089794375, token); 
 
 })
 
@@ -136,7 +136,7 @@ app.post('/webhook/', function(req, res) {
 
         sendText(sender, retText)
 
-        sendGenericAlert(user_ref, token); 
+        sendGenericAlert(sender, token); 
 
 
         // sendText(sender, "Text echo: " + text.substring(0, 100))
@@ -332,7 +332,7 @@ var sendGenericAlert = function (userId, token) {
     if (messageData) {
 
         // 1155176167884296
-        sendMessage1(userId, messageData, token);
+        sendMessage2(userId, messageData, token);
     }
 }
 
@@ -379,7 +379,23 @@ var buildGeneralMessageAlert = function () {
 
 
 
-
+function sendMessage2(sender, messageData, token) {
+    request({
+      url: "https://graph.facebook.com/v2.6/me/messages",
+      qs: {access_token: token},
+        method: 'POST',
+         json: {
+        recipient: {id: sender},
+        message: messageData
+      }
+    }, function(error, response, body) {
+        console.log(body);
+        if (error) {
+            console.log(error);
+        }
+       // callback();
+    });
+}
 
 
 
