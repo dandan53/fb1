@@ -106,9 +106,7 @@ app.post('/webhook/', function(req, res) {
         console.log("webhook - product: " + product);
 
 
-        var text =  hiText.replace("PRODUCT", product)
-
-        sendText(user_ref, text)
+        sendHi(user_ref, product)
 
         sendAlert(user_ref, token, product); 
 
@@ -184,6 +182,40 @@ app.listen(app.get('port'), function() {
 
 //// CHECKBOX /////
 
+var sendHi = function (userId, token, product) {
+
+    var messageData = buildHiMessage(product);
+    if (messageData) {
+
+        // 1155176167884296
+        sendMessage1(userId, messageData, token);
+    }
+}
+
+var buildHiMessage = function (product) {
+    
+        var text =  hiText.replace("PRODUCT", product)
+
+        var messageData =
+        {
+          "text":text
+        }
+        
+        return messageData;
+
+};
+
+/*
+curl -X POST -H "Content-Type: application/json" -d '{
+  "recipient": {
+    "user_ref":"UNIQUE_REF_PARAM"
+  }, 
+  "message": {
+    "text":"hello, world!"
+  }
+}' "https://graph.facebook.com/v2.6/me/messages?access_token=PAGE_ACCESS_TOKEN" 
+*/
+
 var sendAlert = function (userId, token, product) {
      var messageData = buildMessageAlert(product);
     if (messageData) {
@@ -221,7 +253,8 @@ var buildMessageAlert = function (product) {
               {
                 "type":"web_url",
                 "url":web_url,
-                "title": promotText
+                "title": promotText,
+                 "payload": "payload"   
               },{
                 "type":"web_url",
                 "url":web_url,
