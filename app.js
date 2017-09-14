@@ -98,10 +98,16 @@ app.post('/webhook/', function(req, res) {
 			  let optin = event.optin;
 			  let user_ref = optin.user_ref;
 			  let ref = optin.ref;
-        let product = optin.product
+
+        var result = ref.split("@");
+        ref = result[0];
+        let product = result[1];
        // sendTextCheckbox(user_ref, "Hi from the site");
 
-        sendAlert(user_ref, ref, token, product);
+
+        var text = "Hi 🙂 Still looking for " + product + " ? We have some interesting offers for you!"
+
+        sendAlert(user_ref, ref, token, text);
 
 		  }
 		  else
