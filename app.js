@@ -57,9 +57,16 @@ app.use(express.static(__dirname + '/public'));
 
 //TEST
 app.get('/version', function(req, res) {
-  console.log("get version - /");
+  console.log("get version");
 
   res.send("version 3")
+})
+
+//TEST
+app.get('/message', function(req, res) {
+  console.log("get message");
+
+        sendHi("o2j02mihOA", token, "chair")
 })
 
 
@@ -106,7 +113,7 @@ app.post('/webhook/', function(req, res) {
         console.log("webhook - product: " + product);
 
 
-        sendHi(user_ref, product)
+        sendHi(user_ref, token, product)
 
         sendAlert(user_ref, token, product); 
 
