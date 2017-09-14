@@ -99,10 +99,10 @@ app.post('/webhook/', function(req, res) {
 			  let user_ref = optin.user_ref;
 			  let ref = optin.ref;
 
-       /* var result = ref.split("@");
+        var result = ref.split("_");
         ref = result[0];
-        let product = result[1];*/
-        let product = "Chair";
+        let product = result[1];
+        //let product = "Chair";
        
        // sendTextCheckbox(user_ref, "Hi from the site");
        console.log("webhook - product: " + product);
@@ -203,8 +203,8 @@ var buildMessageAlert = function (text) {
         "template_type":"generic",
         "elements":[
            {
-            "title":"text",
-            "subtitle":"We\'ve got the right hat for everyone.",
+            "title":"Hi!",
+            "subtitle":test,
             "default_action": {
               "type": "web_url",
               "url": "https://aws-use1a-dev-dev-fbbot.rfinfra.net/",
