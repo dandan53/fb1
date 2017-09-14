@@ -59,7 +59,7 @@ app.use(express.static(__dirname + '/public'));
 app.get('/version', function(req, res) {
   console.log("get version - /");
 
-  res.send("version 1")
+  res.send("version 2")
 })
 
 
