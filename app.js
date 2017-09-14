@@ -99,9 +99,10 @@ app.post('/webhook/', function(req, res) {
 			  let user_ref = optin.user_ref;
 			  let ref = optin.ref;
 
-        var result = ref.split("@");
+       /* var result = ref.split("@");
         ref = result[0];
-        let product = result[1];
+        let product = result[1];*/
+        let product = "Chair";
        
        // sendTextCheckbox(user_ref, "Hi from the site");
        console.log("webhook - product: " + product);
