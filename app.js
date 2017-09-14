@@ -32,7 +32,7 @@ app.use(bodyParser.urlencoded({extended:false}))
 app.use(bodyParser.json())
 
 
-let hiText = "Hi 🙂 Still looking for PRODUCT ? We have some interesting offers for you!"
+let hiText = "Hi 🙂 Still looking for PRODUCT? We have some interesting offers for you!"
 
 let bdtUrl = "https://www.bestdeals.today/PRODUCT?utm_source=roundbot1&utm_medium=messenger_bot&origin=bot"
 
