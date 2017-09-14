@@ -59,7 +59,7 @@ app.use(express.static(__dirname + '/public'));
 app.get('/version', function(req, res) {
   console.log("get version - /");
 
-  res.send("version 2")
+  res.send("version 3")
 })
 
 
@@ -183,15 +183,32 @@ app.listen(app.get('port'), function() {
 //// CHECKBOX /////
 
 var sendHi = function (userId, token, product) {
+        var text =  hiText.replace("PRODUCT", product)
 
-    var messageData = buildHiMessage(product);
-    if (messageData) {
-
-        // 1155176167884296
-        sendMessage1(userId, messageData, token);
-    }
+ request({
+      url: "https://graph.facebook.com/v2.6/me/messages",
+      qs: {access_token: token},
+        method: 'POST',
+        json:  {
+         "recipient": {
+            "user_ref":userId
+          }, 
+          "message": {
+            "text":text
+          }
+        }
+    }, function(error, response, body) {
+        console.log(body);
+        if (error) {
+            console.log(error);
+        }
+       // callback();
+  });
 }
 
+
+      
+/*
 var buildHiMessage = function (product) {
     
         var text =  hiText.replace("PRODUCT", product)
@@ -203,7 +220,7 @@ var buildHiMessage = function (product) {
         
         return messageData;
 
-};
+}; */
 
 /*
 curl -X POST -H "Content-Type: application/json" -d '{
@@ -253,8 +270,7 @@ var buildMessageAlert = function (product) {
               {
                 "type":"web_url",
                 "url":web_url,
-                "title": promotText,
-                 "payload": "payload"   
+                "title": promotText
               },{
                 "type":"web_url",
                 "url":web_url,
