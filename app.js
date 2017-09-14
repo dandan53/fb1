@@ -36,7 +36,8 @@ let hiText = "Hi 🙂 Still looking for PRODUCT? We have some interesting offers
 
 let bdtUrl = "https://www.bestdeals.today/PRODUCT?utm_source=roundbot1&utm_medium=messenger_bot&origin=bot"
 
-let promotionText = "Check out the best deals for PRODUCT"
+//let promotionText = "Check out the best deals for PRODUCT"
+let promotionText = "Check out the site"
 
 /// HTML
 
