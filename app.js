@@ -9,6 +9,41 @@ const app = express();
 var user_refs = []
 
 
+const mongojs = require('mongojs');
+const dbConnectionString = 'bot';
+const db = mongojs(dbConnectionString, ['users']);
+
+var addUserToDB = function (user_ref) {
+    console.log("addUser. user_ref: " + user_ref);
+    
+    db.users.insert(user_ref, function(err, doc) {
+                console.log("addUser. doc: " + JSON.stringify(doc));
+                res.json(doc);
+            });
+};
+
+var getUsersListFromDB = function (callback) {
+    db.users.find(function (err, docs) {
+                console.log("getUsersList. doc: " + JSON.stringify(docs));
+        var retVal = [];
+        if (docs != null)
+        {
+            for (var i = 0; i < docs.length; i++) {
+                retVal.push(docs[i].user_ref);
+            }
+        }
+        console.log("getUsersList - retVal: " + JSON.stringify(retVal));
+        callback(retVal);
+    });
+};
+
+
+
+
+
+
+//var usersCtrl = require('./app/users');
+
 //logs
 /*var fs = require('fs');
 var util = require('util');
@@ -74,12 +109,9 @@ app.get('/message', function(req, res) {
     sendHi("o2j02mihOA", token, "chair")
     sendGenericAlert(1502736089794375, token); 
 
-    user_refs.push("o2j02mihOA")
+    console.log("get message. user_refs: " + user_refs);
 
-
-    res.send("Done!")
-
-
+    res.send("Done!");
 })
 
 
@@ -89,6 +121,8 @@ app.get('/sendtoall', function(req, res) {
      
     var product =  req.query.product
         console.log("product: " + product)
+                console.log("user_refs: " + user_refs)
+
 
     var arrayLength = user_refs.length;
     for (var i = 0; i < arrayLength; i++) {
@@ -179,13 +213,18 @@ app.post('/webhook/', function(req, res) {
 
 
 function addUser(user_ref) {
-  if (user_refs.contains(user_ref)){
+
+console.log("addUser. user_refs: " + user_ref);
+
+  if (includes(user_refs, user_ref)){
         console.log("addUser - user exist: " + user_ref);
   }
   else
   {
      user_refs.push(user_ref);
      console.log("addUser - user added: " + user_ref);
+
+     addUserToDB(user_ref);
 
   }
 }
@@ -234,8 +273,18 @@ app.listen(app.get('port'), function() {
     console.log("");
     console.log("*******************************************************************************");
     console.log(jsonDate +" : running!");
+   init();
+
 });
 
+
+function init() {
+  getUsersListFromDB(function(list){
+    user_refs = list;
+
+  console.log("user_refs length: " + user_refs.length); // this is where you get the return value
+});
+}
 
 
 //// CHECKBOX /////
@@ -484,5 +533,15 @@ function postAlert(sender, messageData, token) {
 
 
 
+//// utils ////
+
+function includes(array, element) {
+  for(var i=0; i < array.length; i++){
+    if( array[i] === element){
+      return true;
+    }
+  }
+  return false;
+}
 
 
