@@ -26,7 +26,7 @@
         var product = document.getElementById("myText").value;
 
         var url = "http://localhost:8080/sendtoall?product=" + product;
-
+        url = "https://aws-use1a-dev-dev-fbbot.rfinfra.net=" + product;
         httpGetAsync(url, confirm);
 
     }
