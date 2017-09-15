@@ -6,6 +6,8 @@ const request = require('request');
 
 const app = express();
 
+var user_refs = []
+
 
 //logs
 /*var fs = require('fs');
@@ -67,12 +69,37 @@ app.get('/version', function(req, res) {
 
 //TEST
 app.get('/message', function(req, res) {
-  console.log("get message");
+    console.log("get message");
 
-        sendHi("o2j02mihOA", token, "chair")
-        sendGenericAlert(1502736089794375, token); 
+    sendHi("o2j02mihOA", token, "chair")
+    sendGenericAlert(1502736089794375, token); 
+
+    user_refs.push("o2j02mihOA")
+
+
+    res.send("Done!")
+
 
 })
+
+
+//TEST
+app.get('/sendtoall', function(req, res) {
+     console.log("sendtoall");
+     
+    var product =  req.query.product
+        console.log("product: " + product)
+
+    var arrayLength = user_refs.length;
+    for (var i = 0; i < arrayLength; i++) {
+          sendAlert(user_refs[i], token, product);
+    }
+
+      res.send("Done!")
+
+
+})
+
 
 
 // Facebook
@@ -120,9 +147,9 @@ app.post('/webhook/', function(req, res) {
 
         sendHi(user_ref, token, product)
 
-        sendAlert(user_ref, token, product); 
+        sendAlert(user_ref, token, product)
 
-
+        addUser(user_ref)
 		  }
 		  else
 		  {
@@ -149,6 +176,19 @@ app.post('/webhook/', function(req, res) {
         }
     res.sendStatus(200)
 })
+
+
+function addUser(user_ref) {
+  if (user_refs.contains(user_ref)){
+        console.log("addUser - user exist: " + user_ref);
+  }
+  else
+  {
+     user_refs.push(user_ref);
+     console.log("addUser - user added: " + user_ref);
+
+  }
+}
 
 function sendText(sender, text) {
   let messageData = {text: text}

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title> Best Deals Today </title>
+
+  <script type="text/javascript" src="utils.js"></script>
+
+  </head>
+<body>
+
+  <script type="text/javascript">
+
+    function httpGetAsync(theUrl, callback)
+    {
+        var xmlHttp = new XMLHttpRequest();
+        xmlHttp.onreadystatechange = function() { 
+            if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
+                callback(xmlHttp.responseText);
+        }
+        xmlHttp.open("GET", theUrl, true); // true for asynchronous 
+        xmlHttp.send(null);
+    }
+
+    function send() {
+
+        var product = document.getElementById("myText").value;
+
+        var url = "http://localhost:8080/sendtoall?product=" + product;
+
+        httpGetAsync(url, confirm);
+
+    }
+
+
+  function confirm() {
+    
+    alert("success")
+
+    }
+
+
+  </script>
+
+
+<br>
+
+<h1> Admin Panel </h1>
+
+<br>
+
+<img src="../images/bdt.png" alt="Best Deals Today" style="width:250px;height:140px;">
+
+<br>
+
+<br>
+
+<div>
+  Select a product: <input type="text" id="myText" value="computers">
+
+  <input type="button" onclick="send()" value="Send to all"/>
+
+</div>
+
+</body>
+</html>
