@@ -14,10 +14,10 @@ const dbConnectionString = 'bot';
 const db = mongojs(dbConnectionString, ['users']);
 
 var addUserToDB = function (user_ref) {
-    console.log("addUser. user_ref: " + user_ref);
+    console.log("addUserToDB. user_ref: " + user_ref);
     
-    db.users.insert(user_ref, function(err, doc) {
-                console.log("addUser. doc: " + JSON.stringify(doc));
+    db.users.insert({"user_ref": user_ref}, function(err, doc) {
+                console.log("addUserToDB. doc: " + JSON.stringify(doc));
                 res.json(doc);
             });
 };
