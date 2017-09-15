@@ -18,7 +18,6 @@ var addUserToDB = function (user_ref) {
     
     db.users.insert({"user_ref": user_ref}, function(err, doc) {
                 console.log("addUserToDB. doc: " + JSON.stringify(doc));
-                res.json(doc);
             });
 };
 
