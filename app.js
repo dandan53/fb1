@@ -116,11 +116,14 @@ app.get('/message', function(req, res) {
 
 //TEST
 app.get('/sendtoall', function(req, res) {
+     console.log("------------------------------------------------------");
      console.log("sendtoall");
+     console.log("------------------------------------------------------");
+
      
     var product =  req.query.product
         console.log("product: " + product)
-                console.log("user_refs: " + user_refs)
+        console.log("user_refs: " + user_refs)
 
 
     var arrayLength = user_refs.length;
