@@ -11,33 +11,6 @@ var user_refs = []
 
 var usersCtrl = require('./app/users');
 
-var addUserToDB = function (user_ref) {
-    console.log("addUserToDB. user_ref: " + user_ref);
-    
-    db.users.insert({"user_ref": user_ref}, function(err, doc) {
-                console.log("addUserToDB. doc: " + JSON.stringify(doc));
-            });
-};
-
-var getUsersListFromDB = function (callback) {
-    db.users.find(function (err, docs) {
-                console.log("getUsersList. doc: " + JSON.stringify(docs));
-        var retVal = [];
-        if (docs != null)
-        {
-            for (var i = 0; i < docs.length; i++) {
-                retVal.push(docs[i].user_ref);
-            }
-        }
-        console.log("getUsersList - retVal: " + JSON.stringify(retVal));
-        callback(retVal);
-    });
-};
-
-
-
-
-
 
 //var usersCtrl = require('./app/users');
 
@@ -51,10 +24,6 @@ console.log = function(d) { //
   log_file.write(util.format(d) + '\n');
   log_stdout.write(util.format(d) + '\n');
 };*/
-
-
-
-
 
 
 let token = "EAAGoBKt8KYgBAPLmE6Q38xwSE2O7n5lL3E6rqLhgac2wZCpkWhzi5GhZAEAKHjb1xjYTk6zq6ZAHZBcOK30V2HWUakH3ZCWJucBoahZB719DI9nOmnp9EwJMDpk000ZCGPltxXhTvycH6PjEDHFBqMtFontOpi2a6ZAZB4JfsAROreQZDZD"
@@ -75,65 +44,9 @@ let bdt = "https://www.bestdeals.today"
 //let promotionText = "Check out the best deals for PRODUCT"
 let promotionText = "Check out the site"
 
-/// HTML
-
 const path = require('path');
 
-
-//app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(__dirname + '/public'));
-//app.use('/public', express.static(path.join(__dirname + '/public')));
-
-
-// ROUTES
-/*app.get('/', function(req, res) {
-  console.log("get - /");
-
-  res.send("Hi I am a bit")
-})*/
-
-//TEST
-app.get('/version', function(req, res) {
-  console.log("get version");
-
-  res.send("version 3")
-})
-
-//TEST
-app.get('/message', function(req, res) {
-    console.log("get message");
-
-    sendHi("o2j02mihOA", token, "chair")
-    sendGenericAlert(1502736089794375, token); 
-
-    console.log("get message. user_refs: " + user_refs);
-
-    res.send("Done!");
-})
-
-
-//TEST
-app.get('/sendtoall', function(req, res) {
-     console.log("------------------------------------------------------");
-     console.log("sendtoall");
-     console.log("------------------------------------------------------");
-
-     
-    var product =  req.query.product
-        console.log("product: " + product)
-        console.log("user_refs: " + user_refs)
-
-
-    var arrayLength = user_refs.length;
-    for (var i = 0; i < arrayLength; i++) {
-          sendAlert(user_refs[i], token, product);
-    }
-
-      res.send("Done!")
-
-
-})
-
 
 
 // Facebook
@@ -224,7 +137,6 @@ console.log("addUser. user_refs: " + user_ref);
      user_refs.push(user_ref);
      console.log("addUser - user added: " + user_ref);
 
-     //addUserToDB(user_ref);
      usersCtrl.addUser(user_ref);
 
   }
@@ -269,11 +181,15 @@ function sendTextCheckbox(sender, text) {
 }
 
 app.listen(app.get('port'), function() {
+    
     var now = new Date();
-	var jsonDate = now.toJSON();
+	  var jsonDate = now.toJSON();
+
     console.log("");
     console.log("*******************************************************************************");
-    console.log(jsonDate +" : running!");
+    console.log("App started!!! - " + jsonDate);
+    console.log("*******************************************************************************");
+
    init();
 
 });
@@ -285,11 +201,6 @@ function init() {
       user_refs = list;
       console.log("user_refs length: " + user_refs.length); // this is where you get the return value
   });
-
-  /*getUsersListFromDB(function(list){
-      user_refs = list;
-      console.log("user_refs length: " + user_refs.length); // this is where you get the return value
-  }); */
 }
 
 
@@ -517,7 +428,6 @@ function sendMessage2(sender, messageData, token) {
 
 
 
-// user_ref
 function postAlert(sender, messageData, token) {
   //let messageData = {text: text}
   request({
@@ -551,3 +461,47 @@ function includes(array, element) {
 }
 
 
+
+
+
+////////////////////////// DEV /////////////////////////////////////
+
+app.get('/version', function(req, res) {
+  console.log("get version");
+
+  res.send("version 3")
+})
+
+
+app.get('/message', function(req, res) {
+    console.log("get message");
+
+    sendHi("o2j02mihOA", token, "chair")
+    sendGenericAlert(1502736089794375, token); 
+
+    console.log("get message. user_refs: " + user_refs);
+
+    res.send("Done!");
+})
+
+
+app.get('/sendtoall', function(req, res) {
+     console.log("------------------------------------------------------");
+     console.log("sendtoall");
+     console.log("------------------------------------------------------");
+
+     
+    var product =  req.query.product
+        console.log("product: " + product)
+        console.log("user_refs: " + user_refs)
+
+
+    var arrayLength = user_refs.length;
+    for (var i = 0; i < arrayLength; i++) {
+          sendAlert(user_refs[i], token, product);
+    }
+
+      res.send("Done!")
+
+
+})
