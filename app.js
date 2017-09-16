@@ -1,3 +1,4 @@
+'use strict'
 
 const express = require('express');
 const bodyParser = require('body-parser');
@@ -7,10 +8,6 @@ const app = express();
 
 var user_refs = []
 
-
-const mongojs = require('mongojs');
-const dbConnectionString = 'bot';
-db = null;
 
 var usersCtrl = require('./app/users');
 
@@ -284,8 +281,6 @@ app.listen(app.get('port'), function() {
 
 function init() {
   
- db = mongojs(dbConnectionString, ['users']);
-
  usersCtrl.getUsersList(function(list){
       user_refs = list;
       console.log("user_refs length: " + user_refs.length); // this is where you get the return value

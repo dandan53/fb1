@@ -1,4 +1,10 @@
 
+const mongojs = require('mongojs');
+const dbConnectionString = 'bot';
+const db = mongojs(dbConnectionString, ['users']);
+
+
+
 exports.addUser = function (user_ref) {
     console.log("addUserToDB. user_ref: " + user_ref);
     
