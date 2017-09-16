@@ -1,28 +1,26 @@
 
 exports.addUser = function (user_ref) {
-    console.log("addUser. user_ref: " + user_ref);
+    console.log("addUserToDB. user_ref: " + user_ref);
     
-    db.users.insert(user_ref, function(err, doc) {
-                console.log("addUser. doc: " + JSON.stringify(doc));
-                res.json(doc);
+    db.users.insert({"user_ref": user_ref}, function(err, doc) {
+                console.log("addUserToDB. doc: " + JSON.stringify(doc));
             });
 };
 
-exports.getUsersList = function () {
+exports.getUsersList = function (callback) {
     db.users.find(function (err, docs) {
-                console.log("getUsersList. doc: " + JSON.stringify(doc));
+                console.log("getUsersList. doc: " + JSON.stringify(docs));
         var retVal = [];
         if (docs != null)
         {
-            for (i = 0; i < docs.length; i++) {
+            for (var i = 0; i < docs.length; i++) {
                 retVal.push(docs[i].user_ref);
             }
         }
         console.log("getUsersList - retVal: " + JSON.stringify(retVal));
-        return retVal;
+        callback(retVal);
     });
 };
-
 
 
 

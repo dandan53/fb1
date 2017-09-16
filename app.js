@@ -1,4 +1,3 @@
-'use strict'
 
 const express = require('express');
 const bodyParser = require('body-parser');
@@ -11,7 +10,9 @@ var user_refs = []
 
 const mongojs = require('mongojs');
 const dbConnectionString = 'bot';
-const db = mongojs(dbConnectionString, ['users']);
+db = null;
+
+var usersCtrl = require('./app/users');
 
 var addUserToDB = function (user_ref) {
     console.log("addUserToDB. user_ref: " + user_ref);
@@ -226,7 +227,8 @@ console.log("addUser. user_refs: " + user_ref);
      user_refs.push(user_ref);
      console.log("addUser - user added: " + user_ref);
 
-     addUserToDB(user_ref);
+     //addUserToDB(user_ref);
+     usersCtrl.addUser(user_ref);
 
   }
 }
@@ -281,11 +283,18 @@ app.listen(app.get('port'), function() {
 
 
 function init() {
-  getUsersListFromDB(function(list){
-    user_refs = list;
+  
+ db = mongojs(dbConnectionString, ['users']);
 
-  console.log("user_refs length: " + user_refs.length); // this is where you get the return value
-});
+ usersCtrl.getUsersList(function(list){
+      user_refs = list;
+      console.log("user_refs length: " + user_refs.length); // this is where you get the return value
+  });
+
+  /*getUsersListFromDB(function(list){
+      user_refs = list;
+      console.log("user_refs length: " + user_refs.length); // this is where you get the return value
+  }); */
 }
 
 
