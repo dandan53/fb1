@@ -6,6 +6,11 @@ var user_refs = []
 //app.use(bodyParser.urlencoded({extended:false}))
 //app.use(bodyParser.json())
 
+exports.getVersion = function(req, res) {
+  console.log("get version");
+
+  res.send("version 3")
+};
 
 
 
