@@ -51,9 +51,8 @@ app.use(express.static(__dirname + '/public'));
 
 //FB
 const webhookCtrl = require('./app/webhook');
-app.get('/version', webhookCtrl.getVersion);
 
-//app.get('/webhook/', webhookCtrl.getWebhook);
+app.get('/webhook/', webhookCtrl.getWebhook);
 //app.post('/webhook/', webhookCtrl.postWebhook);
 
 
@@ -475,12 +474,12 @@ function includes(array, element) {
 
 ////////////////////////// DEV /////////////////////////////////////
 
-/*app.get('/version', function(req, res) {
+app.get('/version', function(req, res) {
   console.log("get version");
 
   res.send("version 3")
 })
-*/
+
 
 app.get('/message', function(req, res) {
     console.log("get message");

@@ -8,13 +8,6 @@ var user_refs = []
 //app.use(bodyParser.urlencoded({extended:false}))
 //app.use(bodyParser.json())
 
-exports.getVersion = function(req, res) {
-  console.log("get version");
-
-  res.send("version 3")
-};
-
-
 
 let token = "EAAGoBKt8KYgBAPLmE6Q38xwSE2O7n5lL3E6rqLhgac2wZCpkWhzi5GhZAEAKHjb1xjYTk6zq6ZAHZBcOK30V2HWUakH3ZCWJucBoahZB719DI9nOmnp9EwJMDpk000ZCGPltxXhTvycH6PjEDHFBqMtFontOpi2a6ZAZB4JfsAROreQZDZD"
 
