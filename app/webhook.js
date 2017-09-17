@@ -21,6 +21,11 @@ let bdt = "https://www.bestdeals.today"
 let promotionText = "Check out the site"
 
 
+exports.init = function(users) {
+  user_refs = users;
+  console.log("user_refs length: " + user_refs.length);    
+};
+
 
 // Facebook
 exports.getWebhook = function(req, res) {

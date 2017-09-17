@@ -6,9 +6,6 @@ const request = require('request');
 
 const app = express();
 
-var user_refs = []
-
-
 const usersCtrl = require('./app/users');
 
 
@@ -64,8 +61,10 @@ app.listen(app.get('port'), function() {
 function init() {
   
  usersCtrl.getUsersList(function(list){
-      user_refs = list;
-      console.log("user_refs length: " + user_refs.length); // this is where you get the return value
+      var user_refs = list;
+      console.log("user_refs length: " + user_refs.length);
+      webhookCtrl.init(user_refs);
+
   });
 }
 
