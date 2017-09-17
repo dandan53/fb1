@@ -185,7 +185,7 @@ var sendHi = function (userId, token, product) {
 
 
       
-
+/*
 var buildHiMessage = function (product) {
     
         var text =  hiText.replace("PRODUCT", product)
@@ -198,7 +198,7 @@ var buildHiMessage = function (product) {
         return messageData;
 
 }; 
-
+*/
 /*
 curl -X POST -H "Content-Type: application/json" -d '{
   "recipient": {
