@@ -53,11 +53,11 @@ app.use(express.static(__dirname + '/public'));
 const webhookCtrl = require('./app/webhook');
 
 app.get('/webhook/', webhookCtrl.getWebhook);
-//app.post('/webhook/', webhookCtrl.postWebhook);
+app.post('/webhook/', webhookCtrl.postWebhook);
 
 
 // Facebook
-app.get('/webhook/', function(req, res) {
+/*app.get('/webhook/', function(req, res) {
   try {
 
   console.log("get - webhook");
@@ -131,7 +131,7 @@ app.post('/webhook/', function(req, res) {
     res.sendStatus(200)
 })
 
-
+*/
 function addUser(user_ref) {
 
 console.log("addUser. user_refs: " + user_ref);
