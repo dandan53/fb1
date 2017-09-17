@@ -52,7 +52,7 @@ app.use(express.static(__dirname + '/public'));
 //FB
 const webhookCtrl = require('./app/webhook');
 app.get('/webhook/', webhookCtrl.getWebhook);
-app.post('/webhook/', webhookCtrl.postWebhook);
+//app.post('/webhook/', webhookCtrl.postWebhook);
 
 
 // Facebook
@@ -76,7 +76,7 @@ app.post('/webhook/', webhookCtrl.postWebhook);
 }
 })*/
 
-/*app.post('/webhook/', function(req, res) {
+app.post('/webhook/', function(req, res) {
     var now = new Date();
     var jsonDate = now.toJSON();
     console.log("post - webhook: " + jsonDate);
@@ -130,7 +130,7 @@ app.post('/webhook/', webhookCtrl.postWebhook);
     res.sendStatus(200)
 })
 
-*/
+
 function addUser(user_ref) {
 
 console.log("addUser. user_refs: " + user_ref);

@@ -43,7 +43,7 @@ exports.getWebhook = function(req, res) {
 }
 };
 
-
+/*
 exports.postWebhook = function(req, res) {
     var now = new Date();
     var jsonDate = now.toJSON();
@@ -210,6 +210,7 @@ curl -X POST -H "Content-Type: application/json" -d '{
 }' "https://graph.facebook.com/v2.6/me/messages?access_token=PAGE_ACCESS_TOKEN" 
 */
 
+/*
 var sendAlert = function (userId, token, product) {
      var messageData = buildMessageAlert(product);
     if (messageData) {
@@ -371,7 +372,7 @@ function includes(array, element) {
   }
   return false;
 }
-
+*/
 
 
 
