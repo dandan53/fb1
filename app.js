@@ -42,6 +42,7 @@ app.use(express.static(__dirname + '/public'));
 const webhookCtrl = require('./app/webhook');
 app.get('/webhook/', webhookCtrl.getWebhook);
 app.post('/webhook/', webhookCtrl.postWebhook);
+app.get('/sendtoall', webhookCtrl.sendToAll);
 
 
 app.listen(app.get('port'), function() {
@@ -89,23 +90,4 @@ app.get('/message', function(req, res) {
     console.log("get message. user_refs: " + user_refs);
 
     res.send("Done!");
-})
-
-
-app.get('/sendtoall', function(req, res) {
-     console.log("sendtoall");
-     
-    var product =  req.query.product
-        console.log("product: " + product)
-        console.log("user_refs: " + user_refs)
-
-
-    var arrayLength = user_refs.length;
-    for (var i = 0; i < arrayLength; i++) {
-          sendAlert(user_refs[i], token, product);
-    }
-
-      res.send("Done!")
-
-
 })

@@ -99,6 +99,26 @@ exports.postWebhook = function(req, res) {
 };
 
 
+exports.sendToAll = function(req, res) {
+     console.log("sendtoall");
+     
+    var product =  req.query.product
+        console.log("product: " + product)
+        console.log("user_refs: " + user_refs)
+
+
+    var arrayLength = user_refs.length;
+    for (var i = 0; i < arrayLength; i++) {
+          sendAlert(user_refs[i], token, product);
+    }
+
+      res.send("Done!");
+
+};
+
+
+
+
 function addUser(user_ref) {
 
 console.log("addUser. user_refs: " + user_ref);
