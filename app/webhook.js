@@ -27,7 +27,7 @@ exports.init = function(users) {
 };
 
 
-// Facebook
+// for Facebook verification
 exports.getWebhook = function(req, res) {
   try {
 

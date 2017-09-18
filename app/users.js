@@ -1,8 +1,8 @@
+'use strict'
 
 const mongojs = require('mongojs');
 const dbConnectionString = 'bot';
 const db = mongojs(dbConnectionString, ['users']);
-
 
 
 exports.addUser = function (user_ref) {
@@ -12,6 +12,7 @@ exports.addUser = function (user_ref) {
                 console.log("addUserToDB. doc: " + JSON.stringify(doc));
             });
 };
+
 
 exports.getUsersList = function (callback) {
     db.users.find(function (err, docs) {
